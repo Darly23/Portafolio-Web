@@ -1,1 +1,90 @@
-/* Archivo de estilos principal */
+/* ==========================================================================
+   DESIGN SYSTEM - VARIABLES GLOBALES
+   Siguiendo buenas prácticas: un solo lugar para definir el tema visual.
+   ========================================================================== */
+:root {
+  /* Paleta de Colores: Tema Azul Perla */
+  --color-primary: #4A6FA5;      /* Azul perla principal */
+  --color-primary-hover: #3b5985; /* Azul más oscuro para interacciones */
+  --color-secondary: #166088;    /* Azul profundo para contraste */
+  
+  --color-background: #F8F9FA;   /* Blanco perla/gris muy claro */
+  --color-surface: #FFFFFF;      /* Blanco puro para componentes (cards) */
+  
+  --color-text: #212529;         /* Gris casi negro para lectura cómoda */
+  --color-text-muted: #6C757D;   /* Gris suave para textos secundarios */
+  --color-border: #E9ECEF;       /* Gris muy tenue para bordes sutiles */
+
+  /* Tipografía */
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Sistema de Espaciados (basado en rems para escalabilidad) */
+  --space-xs: 0.25rem;  /* 4px */
+  --space-sm: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 2rem;     /* 32px */
+  --space-xl: 4rem;     /* 64px */
+
+  /* Bordes y Sombras */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   RESET CSS - Limpio y minimalista
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.6;
+  scroll-behavior: smooth; /* Para navegación suave entre secciones */
+}
+
+body {
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   ESTILOS GLOBALES - Tipografía Base
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-secondary);
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+p {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-muted);
+}

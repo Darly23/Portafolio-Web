@@ -3,12 +3,12 @@
    Siguiendo buenas prácticas: un solo lugar para definir el tema visual.
    ========================================================================== */
 :root {
-  /* Paleta de Colores (Máximo 5 colores) */
-  --color-primary: #4A6FA5;    /* Azul perla principal */
-  --color-secondary: #166088;  /* Azul profundo para contraste y hovers */
-  --color-background: #F8F9FA; /* Blanco perla muy claro para fondo */
-  --color-surface: #FFFFFF;    /* Blanco puro para tarjetas (cards) */
-  --color-text: #212529;       /* Gris oscuro casi negro para texto general */
+  /* Paleta de Colores: Dark Mode "Marino & Plata" (Máximo 5 colores) */
+  --color-background: #0F172A; /* Azul marino casi negro para el fondo */
+  --color-surface: #1E293B;    /* Azul marino ligeramente más claro para tarjetas */
+  --color-text: #F8FAFC;       /* Blanco plata para texto general */
+  --color-primary: #38BDF8;    /* Azul claro brillante para botones y enlaces */
+  --color-secondary: #94A3B8;  /* Gris/Plata azulado para subtítulos y hovers */
 
   /* Tipografía */
   --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
@@ -105,11 +105,11 @@ p {
   width: 100%;
   max-width: 900px;
   padding: 0.5rem var(--space-md);
-  /* Efecto Vidrio (Glassmorphism) */
-  background: rgba(255, 255, 255, 0.7);
+  /* Efecto Vidrio (Glassmorphism Oscuro) */
+  background: rgba(30, 41, 59, 0.7); /* Transparencia basada en el surface */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50px;
   box-shadow: var(--shadow-sm);
 }
@@ -137,7 +137,7 @@ p {
 }
 
 .nav-links a:hover {
-  background: rgba(74, 111, 165, 0.1); /* Azul perla transparente */
+  background: rgba(148, 163, 184, 0.1); /* Plata transparente */
   color: var(--color-primary);
 }
 

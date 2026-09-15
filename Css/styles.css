@@ -3,17 +3,12 @@
    Siguiendo buenas prácticas: un solo lugar para definir el tema visual.
    ========================================================================== */
 :root {
-  /* Paleta de Colores: Tema Azul Perla */
-  --color-primary: #4A6FA5;      /* Azul perla principal */
-  --color-primary-hover: #3b5985; /* Azul más oscuro para interacciones */
-  --color-secondary: #166088;    /* Azul profundo para contraste */
-  
-  --color-background: #F8F9FA;   /* Blanco perla/gris muy claro */
-  --color-surface: #FFFFFF;      /* Blanco puro para componentes (cards) */
-  
-  --color-text: #212529;         /* Gris casi negro para lectura cómoda */
-  --color-text-muted: #6C757D;   /* Gris suave para textos secundarios */
-  --color-border: #E9ECEF;       /* Gris muy tenue para bordes sutiles */
+  /* Paleta de Colores (Máximo 5 colores) */
+  --color-primary: #4A6FA5;    /* Azul perla principal */
+  --color-secondary: #166088;  /* Azul profundo para contraste y hovers */
+  --color-background: #F8F9FA; /* Blanco perla muy claro para fondo */
+  --color-surface: #FFFFFF;    /* Blanco puro para tarjetas (cards) */
+  --color-text: #212529;       /* Gris oscuro casi negro para texto general */
 
   /* Tipografía */
   --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
@@ -68,7 +63,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-hover);
+  color: var(--color-secondary);
 }
 
 ul {
@@ -86,5 +81,5 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-bottom: var(--space-md);
-  color: var(--color-text-muted);
+  opacity: 0.8; /* Reemplaza el uso de una variable color-muted extra */
 }

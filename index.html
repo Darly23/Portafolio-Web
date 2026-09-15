@@ -5,43 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio Web</title>
-    <meta name="description" content="Portafolio profesional y académico">
-    <!-- Fuentes de Google Fonts -->
+    <!-- Fuentes e Iconos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Hoja de Estilos Principal -->
     <link rel="stylesheet" href="Css/styles.css">
 </head>
 
 <body>
-    <!-- Encabezado y Barra de Navegación Semántica -->
+    <!-- Encabezado Flotante (Glassmorphism) -->
     <header id="header">
         <nav class="navbar">
             <div class="logo">
-                <a href="#inicio">MiPortafolio.</a>
+                <a href="#inicio"><strong>MiPortafolio</strong></a>
             </div>
-
+            
             <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#design-system">Design System</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#sobre-mi"><i class="fas fa-user"></i> Sobre mí</a></li>
+                <li><a href="#habilidades"><i class="fas fa-laptop-code"></i> Habilidades</a></li>
+                <li><a href="#proyectos"><i class="fas fa-briefcase"></i> Proyectos</a></li>
             </ul>
+
+            <div class="nav-cta">
+                <a href="#contacto" class="btn-cta">Contacto</a>
+            </div>
         </nav>
     </header>
 
     <!-- Contenedor Principal del Sitio -->
     <main>
         <!-- Sección de Inicio -->
-        <section id="inicio">
-            <h1>Hola, soy Darly Farias</h1>
-            <h2>Desarrollador Web | Full Stack</h2>
-            <p>Bienvenido a mi portafolio. Aquí comparto mis proyectos y habilidades destacadas desarrollando soluciones con tecnologías Frontend, Backend y Bases de datos.</p>
-            <a href="#proyectos" class="btn btn-primary">Ver mis proyectos</a>
-            <a href="#contacto" class="btn btn-secondary">Contáctame</a>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>Hola, soy Darly Farias</h1>
+                <h2>Desarrollador Web | Full Stack</h2>
+                <p>Bienvenido a mi portafolio. Aquí comparto mis proyectos y habilidades destacadas desarrollando soluciones con tecnologías Frontend, Backend y Bases de datos.</p>
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn-primary">Ver mis proyectos</a>
+                    <a href="#contacto" class="btn-secondary">Contáctame</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="circle-img">
+                    <!-- Usaremos la foto de perfil que ya subiste -->
+                    <img src="img/profile.jpg" alt="Darly Farias">
+                </div>
+            </div>
         </section>
 
         <!-- Sección Sobre Mí -->

@@ -155,3 +155,30 @@ p {
   background: var(--color-secondary);
   color: var(--color-surface);
 }
+
+/* ==========================================================================
+   LAYOUT Y SECCIONES (Evitar que el menú tape el contenido)
+   ========================================================================== */
+main {
+  /* Al hacer el header 'fixed', sale del flujo normal. 
+     Este padding empuja el contenido hacia abajo para que no quede oculto. */
+  padding-top: 6rem; 
+}
+
+section {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   SECCIÓN INICIO
+   ========================================================================== */
+#inicio {
+  /* Hace que la sección ocupe al menos el alto de la pantalla menos el padding */
+  min-height: calc(100vh - 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}

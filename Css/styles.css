@@ -101,7 +101,7 @@ p {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 900px;
   padding: 0.5rem var(--space-md);
@@ -114,15 +114,11 @@ p {
   box-shadow: var(--shadow-sm);
 }
 
-.logo a {
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--color-secondary);
-}
-
 .nav-links {
   display: flex;
-  gap: var(--space-xs);
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 1rem;
 }
 
 .nav-links a {
@@ -550,4 +546,247 @@ section {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+}
+
+/* ==========================================================================
+   SECCIÓN PROYECTOS (PROJECTS)
+   ========================================================================== */
+.projects-section {
+  padding-top: var(--space-xl);
+}
+
+.section-subtitle {
+  color: var(--color-secondary);
+  font-size: 1rem;
+  margin-top: -0.5rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.3); /* Brillo primary sutil */
+}
+
+.project-content {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.project-header h3 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
+}
+
+.project-type {
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.project-link-icon {
+  color: var(--color-secondary);
+  font-size: 1.2rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-link-icon:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+  line-height: 1.6;
+}
+
+.project-img-container {
+  width: 100%;
+  height: 220px;
+  background: rgba(15, 23, 42, 0.6); /* Fondo ultra oscuro para el placeholder */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img-placeholder {
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+.project-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.project-card:hover .project-img-container img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   SECCIÓN CONTACTO Y FOOTER
+   ========================================================================== */
+.contact-section {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  background: var(--color-surface);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-left h2 {
+  font-size: 2.2rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.contact-left p {
+  color: var(--color-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-info-block h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  margin-bottom: 0.8rem;
+}
+
+.contact-info-block p {
+  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.social-links a:hover {
+  background: var(--color-primary);
+  color: var(--color-background);
+  transform: translateY(-3px);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* Responsividad para Contacto */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 3rem;
+  }
+}
+
+/* ==========================================================================
+   CLASES UTILITARIAS (Para evitar CSS inline)
+   ========================================================================== */
+.skill-html5 { color: #E34F26; }
+.skill-css3 { color: #1572B6; }
+.skill-js { color: #F7DF1E; }
+.skill-react { color: #61DAFB; }
+.skill-node { color: #339933; }
+.skill-sql { color: #4479A1; }
+
+.progress-95 { width: 95%; }
+.progress-90 { width: 90%; }
+.progress-85 { width: 85%; }
+.progress-80 { width: 80%; }
+.progress-75 { width: 75%; }
+
+.title-icon {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.btn-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.contact-icon {
+  color: var(--color-primary);
 }

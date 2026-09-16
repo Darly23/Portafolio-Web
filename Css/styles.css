@@ -481,70 +481,43 @@ section {
   margin-bottom: 1rem;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 4rem; /* 2rem vertical, 4rem horizontal */
-  max-width: 900px;
+.skills-grid-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 800px;
   margin: 0 auto;
 }
 
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.skill-name {
+.skill-badge {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--color-text);
-}
-
-.skill-name i {
-  font-size: 1.3rem;
   background: var(--color-surface);
-  padding: 0.5rem;
-  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 1rem;
 }
 
-.skill-percent {
-  font-weight: 600;
-  color: var(--color-secondary);
+.skill-badge:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.3); /* Brillo primary */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: var(--color-surface);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress {
-  height: 100%;
-  background: var(--color-primary);
-  border-radius: 10px;
-  /* Animación y resplandor al estilo premium */
-  transition: width 1.5s ease-in-out;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6); 
+.skill-badge i {
+  font-size: 1.3rem;
 }
 
 /* Responsividad para Habilidades */
 @media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  .skills-grid-badges {
+    gap: 1rem;
   }
 }
 
@@ -765,9 +738,14 @@ section {
 .skill-html5 { color: #E34F26; }
 .skill-css3 { color: #1572B6; }
 .skill-js { color: #F7DF1E; }
+.skill-ts { color: #3178C6; }
 .skill-react { color: #61DAFB; }
+.skill-angular { color: #DD0031; }
 .skill-node { color: #339933; }
-.skill-sql { color: #4479A1; }
+.skill-python { color: #3776AB; }
+.skill-django { color: #092E20; }
+.skill-php { color: #777BB4; }
+.skill-sql { color: #CC292B; }
 
 .progress-95 { width: 95%; }
 .progress-90 { width: 90%; }

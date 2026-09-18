@@ -28,4 +28,42 @@ document.addEventListener('DOMContentLoaded', () => {
             navIcon.classList.add('fa-bars');
         });
     });
+
+    // 2. Validación de Formulario de Contacto
+    const contactForm = document.getElementById('contactForm');
+    if(contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Previene que la página se recargue
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const status = document.getElementById('formStatus');
+
+            // Validar que no haya campos vacíos
+            if(!name || !email || !message) {
+                status.textContent = "Por favor, completa todos los campos.";
+                status.style.color = "#ef4444"; // Color rojo error
+                return;
+            }
+
+            // Validar formato de correo electrónico básico
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailRegex.test(email)) {
+                status.textContent = "Por favor, introduce un correo electrónico válido.";
+                status.style.color = "#ef4444";
+                return;
+            }
+
+            // Simulación de envío exitoso
+            status.textContent = "¡Mensaje enviado con éxito! Te contactaré pronto.";
+            status.style.color = "var(--color-primary)";
+            contactForm.reset();
+            
+            // Borrar el mensaje después de 5 segundos
+            setTimeout(() => {
+                status.textContent = "";
+            }, 5000);
+        });
+    }
 });

@@ -3,31 +3,47 @@
    Siguiendo buenas prácticas: un solo lugar para definir el tema visual.
    ========================================================================== */
 :root {
-  /* Paleta de Colores: Dark Mode "Marino & Plata" (Máximo 5 colores) */
-  --color-background: #0F172A; /* Azul marino casi negro para el fondo */
-  --color-surface: #1E293B;    /* Azul marino ligeramente más claro para tarjetas */
-  --color-text: #F8FAFC;       /* Blanco plata para texto general */
-  --color-primary: #38BDF8;    /* Azul claro brillante para botones y enlaces */
-  --color-secondary: #94A3B8;  /* Gris/Plata azulado para subtítulos y hovers */
+  /* Paleta de Colores: Dark Mode Puro + Azul (UIPro Custom) */
+  --color-background: #050505; /* Casi negro puro */
+  --color-surface: #141414;    /* Gris muy oscuro para contraste */
+  --color-text: #ffffff;       /* Pure White */
+  --color-primary: #3b82f6;    /* Azul Vibrante */
+  --color-secondary: #9ca3af;  /* Gris claro */
+  
+  --color-form-border: rgba(255, 255, 255, 0.5);
+  --color-placeholder: rgba(255, 255, 255, 0.4);
+  --color-navbar-bg: rgba(20, 20, 20, 0.7); /* Glass oscuro */
 
   /* Tipografía */
-  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-primary: 'Inter', system-ui, sans-serif;
   
-  /* Sistema de Espaciados (basado en rems para escalabilidad) */
-  --space-xs: 0.25rem;  /* 4px */
-  --space-sm: 0.5rem;   /* 8px */
-  --space-md: 1rem;     /* 16px */
-  --space-lg: 2rem;     /* 32px */
-  --space-xl: 4rem;     /* 64px */
+  /* Sistema de Espaciados */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
 
-  /* Bordes y Sombras */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  /* Bordes Amigables (UIPro) */
+  --radius-sm: 8px;   /* Elementos pequeños (badges) */
+  --radius-md: 16px;  /* Tarjetas y contenedores */
+  --radius-lg: 50px;  /* Botones y Navbar (estilo píldora) */
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.1);
   
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light-mode {
+  --color-background: #ffffff; /* Blanco puro */
+  --color-surface: #f3f4f6;    /* Gris muy suave */
+  --color-text: #111827;       /* Casi negro para el texto */
+  --color-secondary: #3b82f6;  /* Azul Vibrante */
+  --border-subtle: 1px solid rgba(0, 0, 0, 0.1);
+  --color-form-border: rgba(0, 0, 0, 0.3);
+  --color-placeholder: rgba(0, 0, 0, 0.5);
+  --color-navbar-bg: rgba(255, 255, 255, 0.85); /* Glass blanco escarchado */
 }
 
 /* ==========================================================================
@@ -74,12 +90,15 @@ ul {
    ESTILOS GLOBALES - Tipografía Base
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-secondary);
+  font-family: var(--font-display);
+  color: var(--color-text); /* Blanco puro para contraste máximo */
   line-height: 1.2;
   margin-bottom: var(--space-md);
+  letter-spacing: -0.02em; /* Estilo moderno */
 }
 
 p {
+  font-size: 1.1rem;
   margin-bottom: var(--space-md);
   opacity: 0.8; /* Reemplaza el uso de una variable color-muted extra */
 }
@@ -103,15 +122,18 @@ p {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 900px;
-  padding: 0.5rem var(--space-md);
-  /* Efecto Vidrio (Glassmorphism Oscuro) */
-  background: rgba(30, 41, 59, 0.7); /* Transparencia basada en el surface */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
+  max-width: fit-content;
+  padding: 0.8rem 2rem;
+  background: var(--color-navbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--border-subtle);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+}
+
+.menu-toggle {
+  display: none;
 }
 
 .nav-links {
@@ -125,11 +147,12 @@ p {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text);
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -137,11 +160,28 @@ p {
   color: var(--color-primary);
 }
 
+.theme-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.theme-btn:hover {
+  color: var(--color-primary);
+}
+
 .btn-cta {
   background: var(--color-primary);
   color: var(--color-surface);
-  padding: 0.5rem 1.2rem;
-  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.9rem;
   transition: background 0.3s ease;
@@ -176,9 +216,8 @@ section {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 2rem;
-  /* El padding inferior empuja visualmente el contenido hacia arriba 
-     para lograr un 'centro óptico' más agradable */
-  padding-bottom: 6rem;
+  padding-top: 0; /* Elimina el padding extra para subirlo */
+  padding-bottom: 12rem; /* Empuja el contenido mucho más arriba en pantallas grandes */
 }
 
 .hero-content h1 {
@@ -203,20 +242,22 @@ section {
 
 .btn-primary, .btn-secondary {
   padding: 0.8rem 1.8rem;
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   transition: all 0.3s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary {
   background: var(--color-primary);
-  color: #0F172A; /* Color oscuro para contraste en botón claro */
+  color: #ffffff; /* Letras blancas para contraste en azul cobalto */
 }
 
 .btn-primary:hover {
   background: var(--color-text);
-  color: #0F172A;
+  color: #000000;
 }
 
 .btn-secondary {
@@ -320,48 +361,61 @@ section {
 
 .about-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm); /* Espacio ajustado para efecto Bento */
 }
 
 .stat-box {
-  background: var(--color-surface);
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%), var(--color-surface);
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), var(--shadow-sm);
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   gap: 1rem;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stat-box:nth-child(1) {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 1.5rem;
 }
 
 .stat-box:hover {
-  transform: translateY(-5px);
-  border-color: rgba(56, 189, 248, 0.3); /* Brillo primario suave */
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
 }
 
 .stat-box i {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--color-primary);
-  background: rgba(56, 189, 248, 0.1);
-  padding: 0.8rem;
-  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 1.2rem;
+  border-radius: 18px;
 }
 
 .stat-box h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--color-text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0;
 }
 
 .stat-box p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-secondary);
   margin: 0;
 }
 
 /* Responsividad */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
@@ -402,7 +456,7 @@ section {
 }
 
 /* Responsividad para móviles */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
@@ -427,7 +481,7 @@ section {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .menu-toggle {
     display: block; /* Muestra el icono en móvil */
   }
@@ -482,32 +536,34 @@ section {
 }
 
 .skills-grid-badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-sm);
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .skill-badge {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  background: var(--color-surface);
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%), var(--color-surface);
+  padding: 1.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05), var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   color: var(--color-text);
   font-weight: 500;
   font-size: 1rem;
 }
 
 .skill-badge:hover {
-  transform: translateY(-3px);
-  border-color: rgba(56, 189, 248, 0.3); /* Brillo primary */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px) scale(1.05);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
 }
 
 .skill-badge i {
@@ -515,7 +571,7 @@ section {
 }
 
 /* Responsividad para Habilidades */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .skills-grid-badges {
     gap: 1rem;
   }
@@ -542,18 +598,17 @@ section {
 }
 
 .project-card {
-  background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  background: transparent;
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(56, 189, 248, 0.3); /* Brillo primary sutil */
+  border-color: var(--color-primary);
 }
 
 .project-content {
@@ -580,28 +635,45 @@ section {
   font-weight: 500;
 }
 
+.project-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
 .project-link-icon {
   color: var(--color-secondary);
   font-size: 1.2rem;
-  padding: 0.6rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.project-link-icon:hover {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-  background: rgba(56, 189, 248, 0.1);
-}
-
 .project-desc {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: var(--color-secondary);
   line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tech-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  border: var(--border-subtle);
+}
+
+.project-link-icon:hover {
+  color: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 .project-img-container {
@@ -734,7 +806,7 @@ section {
 }
 
 /* Responsividad para Contacto */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .contact-container {
     grid-template-columns: 1fr;
     padding: 2rem;
@@ -817,7 +889,7 @@ section {
   padding: 0.5rem 0;
   background: transparent;
   border: none;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid var(--color-form-border);
   border-radius: 0;
   color: var(--color-text);
   font-family: inherit;
@@ -828,7 +900,7 @@ section {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--color-placeholder);
 }
 
 .form-group input:focus,
@@ -842,7 +914,7 @@ section {
   justify-content: center;
   margin-top: 1rem;
   padding: 1rem;
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
@@ -856,9 +928,105 @@ section {
   min-height: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .form-row {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   MICRO-INTERACCIONES (Fade-Up)
+   ========================================================================== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   MOBILE NAVBAR FIXES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  #header {
+    padding: 0 1.5rem;
+    top: 1rem;
+    justify-content: flex-end; /* Asegura que la píldora se vaya a la derecha */
+  }
+
+  .navbar {
+    width: auto;
+    max-width: fit-content; /* Se encoje al tamaño del ícono */
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-lg); /* Vuelve a ser redondeado */
+    justify-content: center;
+    position: static; /* Quitado para que el dropdown se ancle al header */
+  }
+  
+  .menu-toggle {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--color-text);
+    z-index: 2000;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 1rem); /* Justo debajo del header completo */
+    right: 1.5rem; /* Alineado exactamente con el padding derecho del header */
+    left: auto; /* Fuerza que no se pegue a la izquierda */
+    width: 260px;
+    height: auto;
+    
+    /* Efecto Glassmorphism Premium */
+    background: rgba(15, 23, 42, 0.85); /* Azul muy oscuro translúcido */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 1rem;
+    gap: 0.2rem;
+    
+    /* Animación de aparición (Fade + Scale) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1500;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  
+  .nav-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff; /* Texto blanco siempre en este menú oscuro */
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    justify-content: flex-start; /* Todo perfectamente alineado a la izquierda */
+    text-align: left;
+    transition: background 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .nav-links a:hover, 
+  .nav-links a:active {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 1.5rem; /* Pequeño salto a la derecha al hacer hover */
   }
 }

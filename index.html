@@ -8,7 +8,7 @@
     <!-- Fuentes e Iconos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Hoja de Estilos Principal -->
     <link rel="stylesheet" href="Css/styles.css">
@@ -29,6 +29,12 @@
                 <li><a href="#habilidades"><i class="fas fa-laptop-code"></i> Habilidades</a></li>
                 <li><a href="#proyectos"><i class="fas fa-briefcase"></i> Proyectos</a></li>
                 <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="design-system.html" target="_blank"><i class="fas fa-swatchbook"></i> Design System</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-btn" aria-label="Cambiar tema">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -36,7 +42,7 @@
     <!-- Contenedor Principal del Sitio -->
     <main>
         <!-- Sección de Inicio -->
-        <section id="inicio" class="hero">
+        <section id="inicio" class="hero fade-up">
             <div class="hero-content">
                 <h1>Hola, soy Darly Farias</h1>
                 <h2>Desarrollador Junior</h2>
@@ -56,7 +62,7 @@
         </section>
 
         <!-- Sección Sobre Mí -->
-        <section id="sobre-mi" class="about-section">
+        <section id="sobre-mi" class="about-section fade-up">
             <div class="about-content">
                 <span class="section-tag">SOBRE MÍ</span>
                 <h2>Creando soluciones digitales con código limpio</h2>
@@ -104,7 +110,7 @@
         </section>
 
         <!-- Sección Habilidades -->
-        <section id="habilidades" class="skills-section">
+        <section id="habilidades" class="skills-section fade-up">
             <div class="section-header">
                 <span class="section-tag">MIS HABILIDADES</span>
                 <h2>Herramientas y Tecnologías</h2>
@@ -165,9 +171,9 @@
         </section>
 
         <!-- Sección Proyectos Destacados -->
-        <section id="proyectos" class="projects-section">
+        <section id="proyectos" class="projects-section fade-up">
             <div class="section-header">
-                <span class="section-tag">PORTAFOLIO</span>
+                <span class="section-tag">MIS TRABAJOS</span>
                 <h2>Proyectos Destacados <i class="fas fa-sparkles title-icon"></i></h2>
                 <p class="section-subtitle">Encuentra algunos de los proyectos que he desarrollado de manera
                     independiente.</p>
@@ -185,12 +191,20 @@
                                 <h3>Detector de Fraudes (IA)</h3>
                                 <span class="project-type">HackIAthon 2026</span>
                             </div>
-                            <a href="#" target="_blank" class="project-link-icon"><i
-                                    class="fas fa-external-link-alt"></i></a>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="project-link-icon"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
                         <p class="project-desc">Sistema híbrido que evalúa siniestros usando reglas de negocio
                             potenciadas por un LLM para extraer incoherencias. Construido con Next.js, Node.js y
                             Supabase.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">Groq LLM</span>
+                        </div>
                     </div>
                 </article>
 
@@ -207,10 +221,17 @@
                                 <h3>Agente Umbrella</h3>
                                 <span class="project-type">Asistente de Salud IA</span>
                             </div>
-                            <a href="https://hackiathon-viamatica.netlify.app/" target="_blank" class="project-link-icon"><i
-                                    class="fas fa-external-link-alt"></i></a>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="project-link-icon"><i class="fab fa-github"></i></a>
+                                <a href="https://hackiathon-viamatica.netlify.app/" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
                         <p class="project-desc">Asistente conversacional para orientación médica y estimación de copagos. Brinda claridad y transparencia en tu salud antes de salir de casa.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Supabase</span>
+                            <span class="tech-tag">OpenAI</span>
+                        </div>
                     </div>
                 </article>
 
@@ -255,7 +276,7 @@
         </section>
 
         <!-- Sección Contacto y Pie de Página -->
-        <section id="contacto" class="contact-section">
+        <section id="contacto" class="contact-section fade-up">
             <div class="contact-container">
                 <div class="contact-left">
                     <span class="section-tag">TRABAJEMOS JUNTOS</span>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System - Portafolio</title>
+    <!-- Mismas fuentes y estilos del proyecto principal -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Css/styles.css">
+    <style>
+        /* Estilos específicos para la visualización del Design System */
+        body {
+            padding-top: 2rem;
+            padding-bottom: 5rem;
+        }
+        .ds-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .ds-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .ds-header h1 {
+            font-size: 3rem;
+            color: var(--color-primary);
+        }
+        .ds-header p {
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+        }
+        .ds-section {
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .ds-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+        .ds-demo {
+            padding: 1.5rem;
+            background: var(--color-background);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .ds-demo.block {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ds-container">
+        <div class="ds-header">
+            <h1>Design System</h1>
+            <p>Guía de estilos y componentes reutilizables utilizados en el Portafolio.</p>
+            <div style="margin-top: 1rem;">
+                <a href="index.html" class="btn-secondary"><i class="fas fa-arrow-left"></i> Volver al Portafolio</a>
+            </div>
+        </div>
+
+        <!-- 1. Paleta de Colores -->
+        <div class="ds-section">
+            <h2 class="ds-title">Paleta de Colores (Dark Mode Puro + Azul)</h2>
+            <div class="ds-demo">
+                <div style="width: 100px; height: 100px; background: #050505; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; display: grid; place-items: center; color: white; text-align:center;">Background<br>#050505</div>
+                <div style="width: 100px; height: 100px; background: #141414; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; display: grid; place-items: center; color: white; text-align:center;">Surface<br>#141414</div>
+                <div style="width: 100px; height: 100px; background: #3b82f6; border-radius: 16px; display: grid; place-items: center; color: #ffffff; font-weight: bold; text-align:center;">Primary<br>#3b82f6</div>
+                <div style="width: 100px; height: 100px; background: #9ca3af; border-radius: 16px; display: grid; place-items: center; color: #111; text-align:center;">Secondary<br>#9ca3af</div>
+            </div>
+        </div>
+
+        <!-- 1B. Tipografía -->
+        <div class="ds-section">
+            <h2 class="ds-title">Tipografía</h2>
+            <div class="ds-demo block">
+                <h1>Heading 1 (Space Grotesk)</h1>
+                <h2>Heading 2 (Space Grotesk)</h2>
+                <h3>Heading 3 (Space Grotesk)</h3>
+                <p><strong>Párrafo (Inter):</strong> Este es un ejemplo de texto normal para el cuerpo de la página. Es legible, moderno y limpio.</p>
+                <p><a href="#">Este es un enlace de ejemplo</a></p>
+                <p style="color: var(--color-secondary); font-size: 0.9rem;">Texto secundario muteado.</p>
+            </div>
+        </div>
+
+        <!-- 1C. Espaciado y Bordes -->
+        <div class="ds-section">
+            <h2 class="ds-title">Espaciado y Bordes (UIPro Premium)</h2>
+            <div class="ds-demo block">
+                <p>Las separaciones y radios se controlan mediante variables estrictas:</p>
+                <ul>
+                    <li><code>--space-md</code> (1.5rem) - Padding estándar.</li>
+                    <li><code>--space-lg</code> (3rem) - Separación de secciones.</li>
+                    <li><code>--radius-md/lg</code> (16px a 50px) - Bordes muy redondeados y amigables.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2. Botones -->
+        <div class="ds-section">
+            <h2 class="ds-title">Botones (Primario y Secundario)</h2>
+            <div class="ds-demo">
+                <a href="#" class="btn-primary">Botón Primario</a>
+                <a href="#" class="btn-secondary">Botón Secundario</a>
+                <button class="btn-primary btn-submit" style="width: auto;">BOTÓN SUBMIT ROUNDED</button>
+            </div>
+        </div>
+
+        <!-- 3. Skill / Badge -->
+        <div class="ds-section">
+            <h2 class="ds-title">Skill / Badge</h2>
+            <div class="ds-demo">
+                <div class="skills-grid-badges" style="margin: 0; width: 100%;">
+                    <div class="skill-badge">
+                        <i class="fab fa-react skill-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="skill-badge">
+                        <i class="fab fa-python skill-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-badge">
+                        <i class="fas fa-database skill-sql"></i>
+                        <span>SQL Server</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Card de Proyecto -->
+        <div class="ds-section">
+            <h2 class="ds-title">Card de Proyecto</h2>
+            <div class="ds-demo block">
+                <div class="projects-grid" style="grid-template-columns: 1fr; max-width: 400px;">
+                    <article class="project-card">
+                        <figure class="project-img-container">
+                            <div class="img-placeholder">📸 Imagen de Ejemplo</div>
+                        </figure>
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div>
+                                    <h3>Ejemplo de Proyecto</h3>
+                                    <span class="project-type">Frontend</span>
+                                </div>
+                                <a href="#" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                            <p class="project-desc">Descripción corta del proyecto para demostrar la consistencia del diseño en la tarjeta (Card).</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Inputs y Textarea -->
+        <div class="ds-section">
+            <h2 class="ds-title">Formulario (Inputs y Textarea)</h2>
+            <div class="ds-demo block">
+                <form class="contact-form" style="max-width: 600px;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Input Text</label>
+                            <input type="text" placeholder="Ejemplo de input minimalista">
+                        </div>
+                        <div class="form-group">
+                            <label>Input Email</label>
+                            <input type="email" placeholder="email@ejemplo.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Textarea</label>
+                        <textarea rows="2" placeholder="Ejemplo de textarea..."></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 6. Navbar Mockup -->
+        <div class="ds-section">
+            <h2 class="ds-title">Navbar (Simulación sin Fixed)</h2>
+            <div class="ds-demo block" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                <!-- Sobreescribimos el position para que no flote en toda la página de demostración -->
+                <nav class="navbar" style="position: static; width: 100%; border-radius: 8px;">
+                    <ul class="nav-links" style="display: flex;">
+                        <li><a href="#"><i class="fas fa-home"></i> Item 1</a></li>
+                        <li><a href="#"><i class="fas fa-user"></i> Item 2</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

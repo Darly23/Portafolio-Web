@@ -66,4 +66,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
         });
     }
+
+    // 3. Micro-interacciones: Fade-Up en Scroll
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // 4. Toggle Tema Claro/Oscuro con localStorage
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    if (themeToggleBtn) {
+        const themeIcon = themeToggleBtn.querySelector('i');
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (currentTheme === 'light') {
+            document.documentElement.classList.add('light-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('light-mode');
+            if (document.documentElement.classList.contains('light-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
 });

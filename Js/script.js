@@ -1,110 +1,149 @@
-// Archivo principal de javascript
-
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Funcionalidad del Menú Hamburguesa
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    const navIcon = mobileMenu.querySelector('i');
+  const currentYearSpan = document.getElementById('currentYear');
+  if (currentYearSpan) {
+    currentYearSpan.textContent = new Date().getFullYear();
+  }
 
-    mobileMenu.addEventListener('click', () => {
-        // Alterna la clase 'active' que hace visible el menú en CSS
-        navLinks.classList.toggle('active');
-        
-        // Cambia el ícono de barras a una 'X' cuando se abre
-        if (navLinks.classList.contains('active')) {
-            navIcon.classList.remove('fa-bars');
-            navIcon.classList.add('fa-times');
+  // 1. TEMA CLARO / OSCURO (CON PERSISTENCIA LOCALSTORAGE)
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const htmlElement = document.documentElement;
+
+  const savedTheme = localStorage.getItem('theme-preference') || 
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  function applyTheme(theme) {
+    htmlElement.setAttribute('data-theme', theme);
+    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme-preference', theme);
+  }
+
+  applyTheme(savedTheme);
+
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(nextTheme);
+  });
+
+  // 2. MENÚ RESPONSIVE
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const navMenu = document.getElementById('navMenu');
+
+  mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // 3. FILTRO DE PROYECTOS POR TECNOLOGÍA
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const filterCategory = button.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        const cardCategories = card.getAttribute('data-category') || '';
+        if (filterCategory === 'all' || cardCategories.includes(filterCategory)) {
+          card.style.display = 'flex';
         } else {
-            navIcon.classList.remove('fa-times');
-            navIcon.classList.add('fa-bars');
+          card.style.display = 'none';
         }
+      });
     });
+  });
 
-    // Cerrar el menú automáticamente al hacer clic en un enlace (para móviles)
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            navIcon.classList.remove('fa-times');
-            navIcon.classList.add('fa-bars');
-        });
-    });
+  // 6. BOTÓN VOLVER ARRIBA Y NAVEGACIÓN ACTIVA EN SCROLL
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
 
-    // 2. Validación de Formulario de Contacto
-    const contactForm = document.getElementById('contactForm');
-    if(contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Previene que la página se recargue
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            const status = document.getElementById('formStatus');
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
 
-            // Validar que no haya campos vacíos
-            if(!name || !email || !message) {
-                status.textContent = "Por favor, completa todos los campos.";
-                status.style.color = "#ef4444"; // Color rojo error
-                return;
-            }
-
-            // Validar formato de correo electrónico básico
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if(!emailRegex.test(email)) {
-                status.textContent = "Por favor, introduce un correo electrónico válido.";
-                status.style.color = "#ef4444";
-                return;
-            }
-
-            // Simulación de envío exitoso
-            status.textContent = "¡Mensaje enviado con éxito! Te contactaré pronto.";
-            status.style.color = "var(--color-primary)";
-            contactForm.reset();
-            
-            // Borrar el mensaje después de 5 segundos
-            setTimeout(() => {
-                status.textContent = "";
-            }, 5000);
-        });
+    if (scrollPosition > 400) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
     }
 
-    // 3. Micro-interacciones: Fade-Up en Scroll
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + sectionId) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // FUNCIÓN PARA MOSTRAR NOTIFICACIÓN TOAST
+  function showToast(message, isError = false) {
+    let toast = document.getElementById('customToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'customToast';
+      toast.className = 'toast-notification';
+      document.body.appendChild(toast);
+    }
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    toast.innerHTML = isError 
+      ? '<i class="fas fa-exclamation-circle"></i> ' + message
+      : '<i class="fas fa-check-circle"></i> ' + message;
+      
+    toast.style.backgroundColor = isError ? '#ff4a4a' : 'var(--color-success)';
+    
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4000);
+  }
 
-    fadeElements.forEach(el => observer.observe(el));
+  // VALIDACIÓN DEL FORMULARIO
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userName = document.getElementById('userName').value.trim();
+      const userEmail = document.getElementById('userEmail').value.trim();
+      const userMessage = document.getElementById('userMessage').value.trim();
 
-    // 4. Toggle Tema Claro/Oscuro con localStorage
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (themeToggleBtn) {
-        const themeIcon = themeToggleBtn.querySelector('i');
-        const currentTheme = localStorage.getItem('theme');
-        
-        if (currentTheme === 'light') {
-            document.documentElement.classList.add('light-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        }
-        
-        themeToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('light-mode');
-            if (document.documentElement.classList.contains('light-mode')) {
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-                localStorage.setItem('theme', 'light');
-            } else {
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    }
+      if (!userName || !userEmail || !userMessage) {
+        showToast('Por favor, completa todos los campos del formulario.', true);
+        return;
+      }
+
+      if (!userEmail.includes('@') || !userEmail.includes('.')) {
+        showToast('Por favor, ingresa un correo electrónico válido.', true);
+        return;
+      }
+
+      showToast('¡Gracias, ' + userName + '! Tu mensaje ha sido enviado exitosamente.');
+      contactForm.reset();
+    });
+  }
 });

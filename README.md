@@ -45,7 +45,7 @@ Acceder al enlace de GitHub Pages:
 ## Capturas del resultado
 
 ### Vista de escritorio
-![Vista de escritorio](./img/imagen_pc.png)
+![Vista de escritorio](./img/Portafolio_pc.png)
 
 ### Vista móvil
 ![Vista móvil](./img/Portafolio_movil.png)
